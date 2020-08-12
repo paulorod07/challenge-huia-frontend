@@ -1,11 +1,13 @@
 import React from 'react';
 
-function App() {
+import { BrowserRouter } from 'react-router-dom';
+
+import Routes from './routes';
+
+export default function App() {
   return (
-    <div>
-      huia
-    </div>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
-
-export default App;
