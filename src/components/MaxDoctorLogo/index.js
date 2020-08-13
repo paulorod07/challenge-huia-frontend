@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './MaxDoctorLogo.module.css';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.svg';
 
 export default function MaxDoctorLogo() {
   return (

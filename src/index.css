@@ -37,6 +37,7 @@ input,
 button {
   display: block;
   font-size: 1rem;
+  outline: none;
 }
 
 button {

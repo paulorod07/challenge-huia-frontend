@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 // import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -6,19 +6,41 @@ import axios from 'axios';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Select from 'react-select';
 
-import styles from './Form.module.css';
+import styles from './MaxDoctorForm.module.css';
 
 export default function MaxDoctorForm() {
   const formRef = useRef(null);
+  const [options, setOptions] = useState([]);
+
+  async function getData() {
+    const URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
+
+    const response = await axios.get(URL);
+  }
 
   useEffect(() => {
     async function getUf() {
-      const URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
-      const response = await axios.get(URL);
-      console.log(response.data);
+      try {
+        const URL =
+          'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
+
+        const response = await axios.get(URL);
+
+        const { data } = response;
+
+        const dataFormatted = data.map((item) => ({
+          value: item.sigla,
+          label: item.sigla,
+        }));
+
+        setOptions(dataFormatted);
+        console.log(options);
+      } catch (error) {
+        console.error(error.response.data);
+      }
     }
     getUf();
-  });
+  }, []);
 
   const handleSubmit = useCallback(async (data) => {
     try {
@@ -46,10 +68,37 @@ export default function MaxDoctorForm() {
     }
   }, []);
 
+  const selectProps = {
+    isRtl: false,
+    isMulti: false,
+    isClearable: false,
+    isSearchable: true,
+    placeholder: 'Selecione',
+    noOptionsMessage: () => 'Não Encontrado.',
+  };
+
   return (
     <Form className={styles.container} ref={formRef} onSubmit={handleSubmit}>
-      <input type="text" name="crm" placeholder="CRM" />
-      <Select />
+      <label htmlFor="CRM">CRM</label>
+      <input className={styles.input} name="crm" placeholder="00000" required />
+      <label htmlFor="UF">UF</label>
+      <Select
+        {...selectProps}
+        className={styles.select}
+        options={options}
+        required
+      />
+
+      {/* <div>
+        <label for="CRM">CRM</label>
+        <input type="number" name="CRM" id="CRM" placeholder="00000" />
+      </div>
+      <div
+        id="campo"
+        style="display:none;color:red;border:none;font-size:12px;"
+      >
+        * Digite o número do seu CRM para continuar
+      </div> */}
 
       <button type="button">Continue</button>
 

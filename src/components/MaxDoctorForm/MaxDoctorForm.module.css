@@ -1,0 +1,24 @@
+.container {
+  margin-top: 30px;
+}
+
+.input {
+  border: none;
+  background: none;
+  border-bottom: 2px solid #9c83be;
+  /* width: 500px; */
+}
+
+.select {
+  border: none;
+  background: none;
+  outline: none;
+  /* width: 500px; */
+}
+
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 2px solid #9c83be;
+  margin: 0.5rem 3rem;
+}
