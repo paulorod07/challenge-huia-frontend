@@ -1,0 +1,18 @@
+.container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* height: 100%;
+  width: 100%; */
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.item {
+  height: 110px;
+  width: 200px;
+}

@@ -1,0 +1,31 @@
+.containerSelect {
+  display: flex;
+  flex-direction: row;
+  /* margin-top: 10px; */
+  border: none;
+  background: none;
+  border-bottom: 2px solid #9c83be;
+  width: 500px;
+}
+
+.select {
+  width: 500px;
+}
+
+.container input {
+  border: none;
+  background: none;
+}
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  color: #6b6a6b;
+}
+
+.error {
+  color: #f31;
+  font-size: 0.875rem;
+}

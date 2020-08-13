@@ -4,5 +4,18 @@
   flex-direction: column;
   background: url('../../assets/background.jpg') no-repeat center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo {
+  display: none;
+  color: red;
+  border: none;
+  font-size: 12px;
 }

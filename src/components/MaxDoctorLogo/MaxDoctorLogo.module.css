@@ -8,6 +8,6 @@
 
 .paragraph {
   text-transform: uppercase;
-  color: #b19cd9;
+  font-weight: bold;
   margin-top: 30px;
 }
