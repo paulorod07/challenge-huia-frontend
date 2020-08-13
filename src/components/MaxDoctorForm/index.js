@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 // import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import axios from 'axios';
+import api from '../../service/api';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Select from 'react-select';
 
@@ -12,19 +12,10 @@ export default function MaxDoctorForm() {
   const formRef = useRef(null);
   const [options, setOptions] = useState([]);
 
-  async function getData() {
-    const URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
-
-    const response = await axios.get(URL);
-  }
-
   useEffect(() => {
     async function getUf() {
       try {
-        const URL =
-          'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
-
-        const response = await axios.get(URL);
+        const response = await api.get('localidades/estados');
 
         const { data } = response;
 
