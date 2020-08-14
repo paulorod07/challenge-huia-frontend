@@ -35,6 +35,25 @@
 }
 
 .paragraph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
   margin-top: 30px;
+  color: #7e479b;
+}
+
+@media only screen and (max-width: 700px) {
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+  }
 }

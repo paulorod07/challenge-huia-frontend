@@ -39,15 +39,14 @@ export default function ReactSelect({ name, ...rest }) {
       background: 'none',
       border: 'none',
       // match with the menu
-      borderRadius: state.isFocused ? '3px 3px 0 0' : 3,
       // Overwrittes the different states of border
       borderColor: state.isFocused ? 'yellow' : 'green',
       // Removes weird border around container
       boxShadow: state.isFocused ? null : null,
-      '&:hover': {
-        // Overwrittes the different states of border
-        borderColor: state.isFocused ? 'red' : 'blue',
-      },
+      // '&:hover': {
+      //   // Overwrittes the different states of border
+      //   // borderColor: state.isFocused ? 'red' : 'blue',
+      // },
     }),
     menu: (base) => ({
       ...base,
@@ -71,8 +70,8 @@ export default function ReactSelect({ name, ...rest }) {
         const { data } = response;
 
         const dataFormatted = data.map((item) => ({
-          value: item.sigla,
-          label: item.sigla,
+          label: item.nome,
+          value: item.nome,
         }));
         setOptions(dataFormatted);
       } catch (error) {

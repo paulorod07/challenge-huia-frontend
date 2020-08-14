@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useField } from '@unform/core';
-import Select from 'react-select';
-import api from '../../service/api';
 
 import styles from './Input.module.css';
 
@@ -25,7 +23,7 @@ export default function Input({ name, ...rest }) {
   return (
     <>
       <div
-        className={styles.container}
+        className={styles.containerInput}
         isErrored={!!error}
         isFocused={isFocused}
       >
@@ -33,6 +31,7 @@ export default function Input({ name, ...rest }) {
           CRM
         </label>
         <input
+          type="number"
           className={styles.input}
           onFocus={handleInputFocus}
           defaultValue={defaultValue}

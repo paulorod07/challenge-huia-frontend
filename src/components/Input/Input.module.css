@@ -1,17 +1,15 @@
-.container {
+.containerInput {
   border: none;
   background: none;
   display: flex;
   flex-direction: row;
   border-bottom: 2px solid #9c83be;
   width: 500px;
-  /* margin-bottom: 20px; */
 }
 
 .containerSelect {
   display: flex;
   flex-direction: row;
-  /* margin-top: 10px; */
   border: none;
   background: none;
   border-bottom: 2px solid #9c83be;
@@ -22,7 +20,7 @@
   width: 500px;
 }
 
-.container input {
+.containerInput input {
   border: none;
   background: none;
 }
@@ -38,4 +36,8 @@
 .error {
   color: #f31;
   font-size: 0.875rem;
+}
+
+@media only screen and (max-width: 700px) {
+  
 }

@@ -1,7 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
-import api from '../../service/api';
 import getValidationErrors from '../../utils/getValidationErrors';
 import ReactSelect from '../../components/ReactSelect';
 import Input from '../../components/Input';
@@ -20,8 +19,8 @@ export default function MaxDoctorForm() {
       const schema = Yup.object().shape({
         crm: Yup.string()
           .required('CRM é obrigatório')
-          .min(5, 'Digite no mínimo 5 dígitos'),
-        uf: Yup.string().required('UF é obrigatório'),
+          .min(5, 'Digite no mínimo 5 caracteres'),
+        uf: Yup.string().ensure().required('UF é obrigatório'),
       });
       await schema.validate(data, { abortEarly: false });
     } catch (err) {
@@ -29,7 +28,7 @@ export default function MaxDoctorForm() {
         const errors = getValidationErrors(err);
         if (formRef.current !== undefined) {
           formRef.current.setErrors(errors);
-          console.log('erroo', err);
+          console.log(err);
           return;
         }
       }
@@ -38,6 +37,7 @@ export default function MaxDoctorForm() {
 
   return (
     <Form className={styles.container} ref={formRef} onSubmit={handleSubmit}>
+      {/* <div className={styles.inputsContainer}> */}
       <Input
         // onChange={changeInput}
         className={styles.input}
@@ -45,9 +45,12 @@ export default function MaxDoctorForm() {
         placeholder="00000"
       />
       <ReactSelect name="uf" />
-      <button type="submit" className={styles.button}>
-        Continue
-      </button>
+      {/* </div> */}
+      <div className={styles.buttonContainer}>
+        <button type="submit" className={styles.button}>
+          Continue
+        </button>
+      </div>
       <p className={styles.paragraph}>
         Canal de compra exclusivo para classe média
       </p>
