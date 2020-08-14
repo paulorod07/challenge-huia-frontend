@@ -7,7 +7,9 @@ export default function MaxDoctorLogo() {
   return (
     <div className={styles.container}>
       <img src={logo} alt="MaxDoctor" />
-      <p className={styles.paragraph}>A plataforma de compra direta do seu anestésico tópico</p>
+      <p className={styles.paragraph}>
+        A plataforma de compra direta <br /> do seu anestésico tópico
+      </p>
     </div>
   );
 }

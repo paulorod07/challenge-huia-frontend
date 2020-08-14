@@ -4,7 +4,7 @@
   /* margin-top: 10px; */
   border: none;
   background: none;
-  border-bottom: 2px solid #9c83be;
+  border-bottom: 1px solid #9c83be;
   width: 500px;
 }
 
@@ -29,4 +29,18 @@
 .error {
   color: #f31;
   font-size: 0.875rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .select {
+    width: 300px;
+  }
+
+  .containerSelect {
+    width: 300px;
+  }
+
+  .container input {
+    width: 300px;
+  }
 }

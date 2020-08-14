@@ -54,7 +54,7 @@ export default function MaxDoctorForm() {
         </button>
       </div>
       <p className={styles.paragraph}>
-        Canal de compra exclusivo para classe média
+        Canal de compra exclusivo <br/> para classe média
       </p>
     </Form>
   );

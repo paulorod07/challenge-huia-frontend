@@ -3,20 +3,7 @@
   background: none;
   display: flex;
   flex-direction: row;
-  border-bottom: 2px solid #9c83be;
-  width: 500px;
-}
-
-.containerSelect {
-  display: flex;
-  flex-direction: row;
-  border: none;
-  background: none;
-  border-bottom: 2px solid #9c83be;
-  width: 500px;
-}
-
-.select {
+  border-bottom: 1px solid #9c83be;
   width: 500px;
 }
 
@@ -38,7 +25,8 @@
   font-size: 0.875rem;
 }
 
-.success {
-  color: #4bb543;
-  font-size: 0.875rem;
+@media only screen and (max-width: 700px) {
+  .containerInput {
+    width: 300px;
+  }
 }
