@@ -6,6 +6,7 @@ import styles from './Input.module.css';
 export default function Input({ name, ...rest }) {
   const inputRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [success, setSuccess] = useState(false);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
   const handleInputFocus = useCallback(() => {
@@ -24,8 +25,8 @@ export default function Input({ name, ...rest }) {
     <>
       <div
         className={styles.containerInput}
-        isErrored={!!error}
-        isFocused={isFocused}
+        // isErrored={!!error}
+        // isFocused={isFocused}
       >
         <label className={styles.label} htmlFor="crm">
           CRM
@@ -37,13 +38,15 @@ export default function Input({ name, ...rest }) {
           defaultValue={defaultValue}
           ref={inputRef}
           {...rest}
+          required
         />
       </div>
-      {error && (
+      {error ? (
         <p className={styles.error} title={error}>
           {error}
         </p>
-      )}
+      ) : null}
+      {success && <p className={styles.success}>Sucesso!</p>}
     </>
   );
 }

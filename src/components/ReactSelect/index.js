@@ -1,15 +1,19 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 
 import Select from 'react-select';
+import BaseSelect from 'react-select';
+import FixRequiredSelect from './FixRequiredSelect';
 import { useField } from '@unform/core';
 import styles from './ReactSelect.module.css';
 
 import api from '../../service/api';
 
 export default function ReactSelect({ name, ...rest }) {
-  const inputRef = useRef(null);
+  const selectRef = useRef(null);
   const [options, setOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [success, setSuccess] = useState(false);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
   const selectProps = {
@@ -21,14 +25,26 @@ export default function ReactSelect({ name, ...rest }) {
     noOptionsMessage: () => 'Não Encontrado.',
   };
 
+  // const Select = (props) => (
+  //   <FixRequiredSelect
+  //     {...props}
+  //     SelectComponent={BaseSelect}
+  //     options={props.options || options}
+  //   />
+  // );
+
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
   }, []);
 
+  function handleChange(selectedOption) {
+    setSelectedOption(selectedOption.label);
+  }
+
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: inputRef.current,
+      ref: selectRef.current,
       path: 'value',
     });
   }, [fieldName, registerField]);
@@ -85,29 +101,31 @@ export default function ReactSelect({ name, ...rest }) {
     <>
       <div
         className={styles.containerSelect}
-        isErrored={!!error}
-        isFocused={isFocused}
+        // isErrored={!!error}
+        // isFocused={isFocused}
       >
         <label className={styles.label} htmlFor="uf">
           UF
         </label>
         <Select
           styles={customStyles}
-          ref={inputRef}
+          ref={selectRef}
           {...selectProps}
           defaultValue={defaultValue}
           onFocus={handleInputFocus}
           className={styles.select}
           options={options}
+          onChange={handleChange}
           {...rest}
           required
         />
       </div>
-      {error && (
+      {error ? (
         <p className={styles.error} title={error}>
           {error}
         </p>
-      )}
+      ) : null}
+      {success && <p className={styles.success}>Sucesso!</p>}
     </>
   );
 }
