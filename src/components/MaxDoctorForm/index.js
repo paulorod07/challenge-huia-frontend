@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { toast } from 'react-toastify';
 import ReactSelect from '../../components/ReactSelect';
 import Input from '../../components/Input';
 
@@ -26,6 +27,7 @@ export default function MaxDoctorForm() {
       await schema.validate(data, { abortEarly: false });
       console.log(data);
       setSuccess(true);
+      toast.success('Sucesso!');
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);

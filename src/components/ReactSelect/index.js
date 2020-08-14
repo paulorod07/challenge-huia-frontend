@@ -1,8 +1,6 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import Select from 'react-select';
-import BaseSelect from 'react-select';
-import FixRequiredSelect from './FixRequiredSelect';
 import { useField } from '@unform/core';
 import styles from './ReactSelect.module.css';
 
@@ -11,8 +9,6 @@ import api from '../../service/api';
 export default function ReactSelect({ name, ...rest }) {
   const selectRef = useRef(null);
   const [options, setOptions] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [isFocused, setIsFocused] = useState(false);
   const [success, setSuccess] = useState(false);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
@@ -24,22 +20,6 @@ export default function ReactSelect({ name, ...rest }) {
     placeholder: 'Selecionar',
     noOptionsMessage: () => 'Não Encontrado.',
   };
-
-  // const Select = (props) => (
-  //   <FixRequiredSelect
-  //     {...props}
-  //     SelectComponent={BaseSelect}
-  //     options={props.options || options}
-  //   />
-  // );
-
-  const handleInputFocus = useCallback(() => {
-    setIsFocused(true);
-  }, []);
-
-  function handleChange(selectedOption) {
-    setSelectedOption(selectedOption.label);
-  }
 
   useEffect(() => {
     registerField({
@@ -101,8 +81,6 @@ export default function ReactSelect({ name, ...rest }) {
     <>
       <div
         className={styles.containerSelect}
-        // isErrored={!!error}
-        // isFocused={isFocused}
       >
         <label className={styles.label} htmlFor="uf">
           UF
@@ -112,10 +90,8 @@ export default function ReactSelect({ name, ...rest }) {
           ref={selectRef}
           {...selectProps}
           defaultValue={defaultValue}
-          onFocus={handleInputFocus}
           className={styles.select}
           options={options}
-          onChange={handleChange}
           {...rest}
           required
         />

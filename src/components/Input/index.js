@@ -5,13 +5,8 @@ import styles from './Input.module.css';
 
 export default function Input({ name, ...rest }) {
   const inputRef = useRef(null);
-  const [isFocused, setIsFocused] = useState(false);
   const [success, setSuccess] = useState(false);
   const { fieldName, defaultValue, error, registerField } = useField(name);
-
-  const handleInputFocus = useCallback(() => {
-    setIsFocused(true);
-  }, []);
 
   useEffect(() => {
     registerField({
@@ -34,7 +29,6 @@ export default function Input({ name, ...rest }) {
         <input
           type="number"
           className={styles.input}
-          onFocus={handleInputFocus}
           defaultValue={defaultValue}
           ref={inputRef}
           {...rest}
