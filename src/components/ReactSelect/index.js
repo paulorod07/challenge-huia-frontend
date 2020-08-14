@@ -9,7 +9,6 @@ import api from '../../service/api';
 export default function ReactSelect({ name, ...rest }) {
   const selectRef = useRef(null);
   const [options, setOptions] = useState([]);
-  const [success, setSuccess] = useState(false);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
   const selectProps = {
@@ -25,7 +24,10 @@ export default function ReactSelect({ name, ...rest }) {
     registerField({
       name: fieldName,
       ref: selectRef.current,
-      path: 'value',
+      path: 'state.value.label',
+      // clearValue: (selectRef) => {
+      //   selectRef.select.clearValue();
+      // },
     });
   }, [fieldName, registerField]);
 
@@ -79,9 +81,7 @@ export default function ReactSelect({ name, ...rest }) {
 
   return (
     <>
-      <div
-        className={styles.containerSelect}
-      >
+      <div className={styles.containerSelect}>
         <label className={styles.label} htmlFor="uf">
           UF
         </label>
@@ -91,17 +91,16 @@ export default function ReactSelect({ name, ...rest }) {
           {...selectProps}
           defaultValue={defaultValue}
           className={styles.select}
+          name={fieldName}
           options={options}
           {...rest}
-          required
         />
       </div>
-      {error ? (
+      {error && (
         <p className={styles.error} title={error}>
           {error}
         </p>
-      ) : null}
-      {success && <p className={styles.success}>Sucesso!</p>}
+      )}
     </>
   );
 }

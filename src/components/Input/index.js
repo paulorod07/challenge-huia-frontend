@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
 
 import styles from './Input.module.css';
 
 export default function Input({ name, ...rest }) {
   const inputRef = useRef(null);
-  const [success, setSuccess] = useState(false);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
   useEffect(() => {
@@ -18,11 +17,7 @@ export default function Input({ name, ...rest }) {
 
   return (
     <>
-      <div
-        className={styles.containerInput}
-        // isErrored={!!error}
-        // isFocused={isFocused}
-      >
+      <div className={styles.containerInput}>
         <label className={styles.label} htmlFor="crm">
           CRM
         </label>
@@ -32,15 +27,13 @@ export default function Input({ name, ...rest }) {
           defaultValue={defaultValue}
           ref={inputRef}
           {...rest}
-          required
         />
       </div>
-      {error ? (
+      {error && (
         <p className={styles.error} title={error}>
           {error}
         </p>
-      ) : null}
-      {success && <p className={styles.success}>Sucesso!</p>}
+      )}
     </>
   );
 }
